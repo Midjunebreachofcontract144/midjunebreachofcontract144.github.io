@@ -1,19 +1,17 @@
  <a href="burclar.html">Burçlar</a>
  <a href="yoga.html">Yoga</a>
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Astroloji</title>
-    
-    <!-- PWA Meta -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b0b1a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon-192.png">
-    
     <style>
         body {
             margin: 0;
@@ -38,18 +36,21 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .btn {
+        .install-btn {
             background: #a78bfa;
             color: #000;
             border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 16px 40px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            margin: 10px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+            transition: 0.3s;
         }
-        .btn:hover {
+        .install-btn:hover {
+            transform: scale(1.05);
             background: #34d399;
         }
     </style>
@@ -57,55 +58,37 @@
 <body>
     <div class="container">
         <h1>🌟 Astroloji</h1>
-        <p>Hoş geldin! Uygulamayı telefonuna eklemek için aşağıdaki butonu kullan.</p>
-        <button class="btn" id="installBtn">📲 Uygulamayı Ekle</button>
-    </div>
-
-    <!-- PWA KURULUM BANNER'İ (Otomatik görünür) -->
-    <div id="pwa-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#1a1a2e; padding:16px 20px; border-top:3px solid #a78bfa; text-align:center; z-index:9999;">
-        <p style="margin:0 0 10px; color:#fff; font-size:1rem;">📱 <strong>Bu uygulamayı cihazına eklemek ister misin?</strong></p>
-        <button id="installBannerBtn" style="background:#a78bfa; color:#000; border:none; padding:12px 28px; border-radius:40px; font-weight:bold; font-size:1rem; cursor:pointer;">✅ Evet, Ekle</button>
-        <button id="closeBanner" style="background:transparent; color:#999; border:1px solid #444; padding:12px 24px; border-radius:40px; cursor:pointer;">❌ Kapat</button>
+        <p>Uygulamayı telefonuna eklemek için butona tıkla.</p>
+        <button class="install-btn" id="installBtn">📲 Uygulamayı Yükle</button>
+        <p style="font-size:0.8rem; color:#888;">Android, iOS, Windows, Mac hepsinde çalışır</p>
     </div>
 
     <script>
-        // PWA KURULUM
         let deferredPrompt;
-        const banner = document.getElementById('pwa-banner');
-        const installBannerBtn = document.getElementById('installBannerBtn');
-        const installBtn = document.getElementById('installBtn');
-        const closeBtn = document.getElementById('closeBanner');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            banner.style.display = 'block';
+            document.getElementById('installBtn').style.display = 'block';
         });
 
-        function installApp() {
+        document.getElementById('installBtn').addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((result) => {
-                    if (result.outcome === 'accepted') {
-                        alert('🎉 Uygulama başarıyla eklendi!');
-                    }
-                    deferredPrompt = null;
-                    banner.style.display = 'none';
-                });
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') {
+                    alert('🎉 Uygulama başarıyla eklendi! Ana ekranda bulabilirsin.');
+                } else {
+                    alert('Kurulum iptal edildi.');
+                }
+                deferredPrompt = null;
             } else {
                 alert('Lütfen Chrome menüsünden "Ana ekrana ekle" seçeneğini kullanın.');
             }
-        }
-
-        installBtn.addEventListener('click', installApp);
-        installBannerBtn.addEventListener('click', installApp);
-
-        closeBtn.addEventListener('click', () => {
-            banner.style.display = 'none';
         });
 
         if (window.matchMedia('(display-mode: standalone)').matches) {
-            banner.style.display = 'none';
+            document.getElementById('installBtn').style.display = 'none';
         }
 
         if ('serviceWorker' in navigator) {
