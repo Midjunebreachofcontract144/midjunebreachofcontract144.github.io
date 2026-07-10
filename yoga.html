@@ -1,5 +1,254 @@
 <a href="index.html">Ana Sayfaya Dön</a>
-Çok özür dilerim, sizi daha fazla bekletmek istemiyorum. Kodları şimdi tüm detaylarıyla ve temiz bir metin olarak buraya bırakıyorum. Kopyalamayı
+// Tıklanan butona vurgu ekleme
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.style.backgroundColor = 'var(--accent-color)'); // Reset
+    btn.style.backgroundColor = 'var(--secondary-color)'); // Seçili olan
+  });
+});
+
+// Örnek: Ses dosyalarını tanımlayın
+const audioFiles = {
+  sabah: new Audio('sabah.mp3'),
+  gece: new Audio('gece.mp3'),
+  yoga: new Audio('yoga.mp3'),
+  nefes: new Audio('nefes.mp3')
+};
+
+function playAudio(type) {
+  // Önce çalan başka bir şey varsa durdur
+  Object.values(audioFiles).forEach(audio => audio.pause());
+  
+  // Seçileni çal
+  audioFiles[type].play();
+  
+  // Metin güncelleme
+  const texts = { /* ... metinleriniz ... */ };
+  document.getElementById('displayText').innerHTML = texts[type];
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎧 Profesyonel Yoga & Meditasyon</title>
+<style>
+  :root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --secondary-color: #03dac6;
+    --error-color: #cf6679;
+  }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .container {
+    background-color: var(--card-bg);
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  h1 { color: var(--accent-color); margin-bottom: 20px; }
+  .btn {
+    background-color: var(--accent-color);
+    color: #000;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 10px;
+  }
+  .btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+  }
+  .content-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+  }
+  .media-display {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .back-link {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+    text-align: left;
+    font-weight: bold;
+  }
+  .back-link:hover { color: var(--secondary-color); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+  <h1>🌿 Mutina's Tube - Piazza</h1>
+  <p>Rehberli sesli, yazılı ve görsel meditasyon ve yoga pratikleri.</p>
+
+  <div>
+    <button class="btn" onclick="openMeditation('sabah')">🌅 Sabah Meditasyonu</button>
+    <button class="btn" onclick="openMeditation('gece')">🌙 Gece Meditasyonu</button>
+    <button class="btn" onclick="openMeditation('yoga')">🧘‍♀️ Yoga Nidra</button>
+    <button class="btn" onclick="openMeditation('nefes')">🌬️ Nefes Rehberi</button>
+    <button class="btn" onclick="openMeditation('chakra')"> चक्र Çakra Dengeleme</button>
+  </div>
+
+  <div class="content-box">
+    <div id="mediaContainer">
+      <img id="displayMedia" src="placeholder.jpg" alt="Meditasyon Görseli" class="media-display" style="display:none;">
+    </div>
+    <div id="displayEmoji" style="font-size:3rem; margin-bottom: 10px;">🎧</div>
+    <div id="displayText">Bir butona tıklayarak içeriği görüntüleyin.</div>
+  </div>
+
+  <div class="content-box">
+    <h3>💬 Yorum Yap</h3>
+    <form id="commentForm">
+      <input type="text" placeholder="Adınız *" required>
+      <input type="text" placeholder="Soyadınız (İsteğe bağlı)">
+      <input type="text" placeholder="Şehir (İsteğe bağlı)">
+      <input type="email" placeholder="E-posta Adresiniz (Gizlenir) *" required>
+      <textarea placeholder="Yorumunuzu yazın..." rows="4" required></textarea>
+      <button class="btn" type="submit">Yorumu Gönder</button>
+    </form>
+  </div>
+
+  <div class="content-box">
+    <h3>❓ Soru Sor</h3>
+    <form id="questionForm">
+      <input type="text" placeholder="Adınız *" required>
+      <input type="text" placeholder="Soyadınız *" required>
+      <input type="tel" placeholder="Cep Telefonunuz *" required>
+      <input type="email" placeholder="E-posta Adresiniz *" required>
+      <input type="text" placeholder="Şehir *" required>
+      <input type="number" placeholder="Yaşınız *" required>
+      <textarea placeholder="Sorunuzu yazın..." rows="3" required></textarea>
+      <button class="btn" type="submit">Soruyu Gönder</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  const meditations = {
+    sabah: {
+      text: "🌅 Sabah Meditasyonu: Güne başlarken 5 dakika boyunca derin nefes alıp verin ve zihninizi dinginleştirin.",
+      emoji: "🌅",
+      media: "sabah.jpg", // Görsel yolunu buraya ekleyin
+      audio: "sabah.mp3"  // Ses dosyası yolunu buraya ekleyin
+    },
+    gece: {
+      text: "🌙 Gece Meditasyonu: Günün yorgunluğunu bırakarak derin bir uykuya hazırlanın.",
+      emoji: "🌙",
+      media: "gece.jpg",
+      audio: "gece.mp3"
+    },
+    yoga: {
+      text: "🧘‍♀️ Yoga Nidra Rehberi: Sırt üstü rahat bir pozisyonda yatın ve bedeninizin farkına varın.",
+      emoji: "🧘‍♀️",
+      media: "yoga.jpg",
+      audio: "yoga.mp3"
+    },
+    nefes: {
+      text: "🌬️ Nefes Rehberi: 4-7-8 tekniği ile nefesinizi düzenleyin ve stres seviyenizi azaltın.",
+      emoji: "🌬️",
+      media: "nefes.jpg",
+      audio: "nefes.mp3"
+    },
+    chakra: {
+      text: " चक्र Çakra Dengeleme: Bedeninizdeki enerji merkezlerini dengelemek için rehberli meditasyon.",
+      emoji: "🌈",
+      media: "chakra.jpg",
+      audio: "chakra.mp3"
+    }
+  };
+
+  function openMeditation(type) {
+    const data = meditations[type];
+    const mediaElement = document.getElementById('displayMedia');
+    
+    document.getElementById('displayEmoji').innerHTML = data.emoji;
+    document.getElementById('displayText').innerHTML = data.text.replace(/\n/g, '<br>');
+    
+    // Görseli göster
+    if (data.media) {
+      mediaElement.src = data.media;
+      mediaElement.style.display = 'block';
+    } else {
+      mediaElement.style.display = 'none';
+    }
+
+    // Ses çalma mantığı
+    if (data.audio) {
+      const audio = new Audio(data.audio);
+      audio.play();
+    }
+  }
+
+  // Yorum Formu Gönderimi
+  document.getElementById('commentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Buraya e-posta gönderim fonksiyonunu ekleyin (örneğin bir fetch isteği ile backend'e)
+    alert("Yorumunuz ve verileriniz iletilmiştir.");
+  });
+  
+  // Soru Formu Gönderimi
+  document.getElementById('questionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Buraya e-posta gönderim fonksiyonunu ekleyin
+    alert("Sorunuz ve kişisel bilgileriniz iletilmiştir.");
+  });
+</script>
+
+</body>
+</html>
+
+
 
 
 
