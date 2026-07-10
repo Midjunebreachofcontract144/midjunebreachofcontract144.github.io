@@ -1,12 +1,12 @@
 </div><a href="index.html">Ana Sayfaya Dön</a>
-</div>div>
+<div>
 
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yoga & Meditasyon | Sesli + Görsel + Animasyonlu</title>
+    <title>Yoga & Meditasyon | Sesli + Görsel Slayt</title>
     <style>
         :root {
             --bg: #0b0b1a;
@@ -254,7 +254,7 @@
 <body>
 <div class="container" id="mainContainer">
     <h1>🧘 Yoga & Meditasyon</h1>
-    <div class="sub">Sesli anlatım + görsel + yazılı rehber ile zenginleştirilmiş pratikler</div>
+    <div class="sub">Sesli anlatım + görsel slayt + yazılı rehber</div>
 
     <div class="menu-grid">
         <button class="btn" data-med="sabah">🌅 Sabah</button>
@@ -281,7 +281,7 @@
         <div class="audio-status">
             <span class="dot" id="audioDot"></span>
             <span id="audioLabel">Ses bekleniyor</span>
-            <button class="btn-mute" id="muteBtn">🔇 Müzik Kapa</button>
+            <button class="btn-mute" id="muteBtn">🔇 Müzik Kapalı</button>
         </div>
     </div>
 
@@ -327,84 +327,134 @@
 
     <a href="index.html" class="home-link">🏠 Ana Sayfaya Dön</a>
 </div>
-<script>
-    // ---------- MEDİTASYON VERİLERİ (detaylı, adım adım) ----------
+
+    <script>
+    // ---------- MEDİTASYON VERİLERİ ----------
+    // Her meditasyon için 3 farklı görsel (slayt için)
     const meditations = {
         sabah: {
             title: "☀️ Sabah Meditasyonu",
-            text: "Güne niyetle başlayın.\n\n1️⃣ Rahat bir pozisyonda oturun.\n2️⃣ Gözlerinizi kapatın ve 3 derin nefes alın.\n3️⃣ Bugün için olumlu bir niyet belirleyin.\n4️⃣ Nefesinizi izleyerek 5 dakika boyunca kalın.\n5️⃣ Yavaşça gözlerinizi açın ve güne başlayın.",
+            text: "1. Rahat bir pozisyonda oturun.\n2. Gözlerinizi kapatın ve 3 derin nefes alın.\n3. Bugün için olumlu bir niyet belirleyin.\n4. Nefesinizi izleyerek 5 dakika boyunca kalın.\n5. Yavaşça gözlerinizi açın ve güne başlayın.",
             emoji: "🌅",
-            image: "https://source.unsplash.com/600x338/?sunrise,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?sunrise,meditation",
+                "https://source.unsplash.com/600x338/?morning,yoga",
+                "https://source.unsplash.com/600x338/?sunrise,pose"
+            ]
         },
         gece: {
             title: "🌙 Gece Meditasyonu",
-            text: "Günün yükünü bırakma zamanı.\n\n1️⃣ Sırt üstü uzanın, kollarınız yanlarda.\n2️⃣ Her nefeste bedeninizin daha da ağırlaştığını hayal edin.\n3️⃣ Ayak parmaklarınızdan başlayarak tüm bedeni tarayın.\n4️⃣ Her bir bölgeyi bilinçli olarak gevşetin.\n5️⃣ 10 dakika boyunca bu gevşeme halinde kalın.",
+            text: "1. Sırt üstü uzanın, kollarınız yanlarda.\n2. Her nefeste bedeninizin daha da ağırlaştığını hayal edin.\n3. Ayak parmaklarınızdan başlayarak tüm bedeni tarayın.\n4. Her bir bölgeyi bilinçli olarak gevşetin.\n5. 10 dakika boyunca bu gevşeme halinde kalın.",
             emoji: "🌙",
-            image: "https://source.unsplash.com/600x338/?night,moon,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?night,moon,meditation",
+                "https://source.unsplash.com/600x338/?sleep,relax",
+                "https://source.unsplash.com/600x338/?night,yoga"
+            ]
         },
         yoganidra: {
             title: "🧘 Yoga Nidra",
-            text: "Derin uyku bilinci – tam bir yenilenme.\n\n1️⃣ Sırt üstü yatın, bacaklarınızı hafif açın.\n2️⃣ Niyetinizi belirleyin (ör. 'huzur').\n3️⃣ Vücut taraması: ayaklar → bacaklar → gövde → kollar → baş.\n4️⃣ Her bölgeyi 10 saniye bilinçli olarak hissedin.\n5️⃣ 15-20 dakika bu farkındalıkta kalın.",
+            text: "1. Sırt üstü yatın, bacaklarınızı hafif açın.\n2. Niyetinizi belirleyin (ör. 'huzur').\n3. Vücut taraması: ayaklar → bacaklar → gövde → kollar → baş.\n4. Her bölgeyi 10 saniye bilinçli olarak hissedin.\n5. 15-20 dakika bu farkındalıkta kalın.",
             emoji: "🧘‍♀️",
-            image: "https://source.unsplash.com/600x338/?yoga,nidra,sleep"
+            images: [
+                "https://source.unsplash.com/600x338/?yoga,nidra",
+                "https://source.unsplash.com/600x338/?sleep,pose",
+                "https://source.unsplash.com/600x338/?relax,body"
+            ]
         },
         nefes: {
             title: "🌬️ 4-7-8 Nefes Tekniği",
-            text: "Sinir sistemini yatıştırır.\n\n1️⃣ Burnunuzdan 4 saniye boyunca nefes alın.\n2️⃣ Nefesi 7 saniye tutun.\n3️⃣ Ağzınızdan 8 saniyede yavaşça verin.\n4️⃣ Bu döngüyü 4-8 kez tekrarlayın.\n5️⃣ Her tekrarda daha derin bir rahatlama hissedeceksiniz.",
+            text: "1. Burnunuzdan 4 saniye boyunca nefes alın.\n2. Nefesi 7 saniye tutun.\n3. Ağzınızdan 8 saniyede yavaşça verin.\n4. Bu döngüyü 4-8 kez tekrarlayın.\n5. Her tekrarda daha derin bir rahatlama hissedeceksiniz.",
             emoji: "🌬️",
-            image: "https://source.unsplash.com/600x338/?breath,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?breath,meditation",
+                "https://source.unsplash.com/600x338/?lungs,breathing",
+                "https://source.unsplash.com/600x338/?calm,breath"
+            ]
         },
         chakra: {
             title: "🌈 Çakra Dengeleme",
-            text: "7 ana enerji merkezini uyumlaştırın.\n\n1️⃣ Kök çakra (kırmızı) – topraklanma.\n2️⃣ Sakral çakra (turuncu) – yaratıcılık.\n3️⃣ Solar pleksus (sarı) – özgüven.\n4️⃣ Kalp çakrası (yeşil) – sevgi.\n5️⃣ Boğaz çakrası (mavi) – iletişim.\n6️⃣ Üçüncü göz (indigo) – sezgi.\n7️⃣ Taç çakra (mor) – bağlantı.\nHer birini birkaç dakika görselleştirin.",
+            text: "1. Kök çakra (kırmızı) – topraklanma.\n2. Sakral çakra (turuncu) – yaratıcılık.\n3. Solar pleksus (sarı) – özgüven.\n4. Kalp çakrası (yeşil) – sevgi.\n5. Boğaz çakrası (mavi) – iletişim.\n6. Üçüncü göz (indigo) – sezgi.\n7. Taç çakra (mor) – bağlantı.\nHer birini birkaç dakika görselleştirin.",
             emoji: "🌈",
-            image: "https://source.unsplash.com/600x338/?chakra,energy"
+            images: [
+                "https://source.unsplash.com/600x338/?chakra,energy",
+                "https://source.unsplash.com/600x338/?spiritual,meditation",
+                "https://source.unsplash.com/600x338/?balance,chakra"
+            ]
         },
         odak: {
             title: "🎯 Derin Odak Pratiği",
-            text: "Zihinsel dağınıklığı temizleyin.\n\n1️⃣ Tek bir nokta belirleyin (nefes, bir mum alevi veya bir ses).\n2️⃣ Dikkatinizi o noktaya verin.\n3️⃣ Aklınıza başka bir şey geldiğinde, yargılamadan tekrar o noktaya dönün.\n4️⃣ 5 dakika boyunca bu döngüde kalın.\n5️⃣ Zamanla odaklanma süreniz artacaktır.",
+            text: "1. Tek bir nokta belirleyin (nefes, mum alevi veya ses).\n2. Dikkatinizi o noktaya verin.\n3. Aklınıza başka bir şey geldiğinde, yargılamadan tekrar o noktaya dönün.\n4. 5 dakika boyunca bu döngüde kalın.\n5. Zamanla odaklanma süreniz artacaktır.",
             emoji: "🎯",
-            image: "https://source.unsplash.com/600x338/?focus,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?focus,meditation",
+                "https://source.unsplash.com/600x338/?concentration",
+                "https://source.unsplash.com/600x338/?mind,clarity"
+            ]
         },
         rehberli: {
             title: "🗣️ Rehberli Meditasyon",
-            text: "Sesli yönlendirmelerle rahatlama.\n\n1️⃣ Rahat bir yere oturun veya uzanın.\n2️⃣ Gözlerinizi kapatın ve sesimi takip edin.\n3️⃣ Derin nefes alın, her nefeste daha da gevşeyin.\n4️⃣ Şimdi ayaklarınızı, bacaklarınızı, kalçanızı… sırayla gevşetin.\n5️⃣ 10 dakika boyunca bu rahatlama yolculuğunda kalın.",
+            text: "1. Rahat bir yere oturun veya uzanın.\n2. Gözlerinizi kapatın ve sesimi takip edin.\n3. Derin nefes alın, her nefeste daha da gevşeyin.\n4. Şimdi ayaklarınızı, bacaklarınızı, kalçanızı… sırayla gevşetin.\n5. 10 dakika boyunca bu rahatlama yolculuğunda kalın.",
             emoji: "🗣️",
-            image: "https://source.unsplash.com/600x338/?guide,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?guide,meditation",
+                "https://source.unsplash.com/600x338/?teacher,yoga",
+                "https://source.unsplash.com/600x338/?voice,calm"
+            ]
         },
         mantra: {
             title: "🔊 Mantra Meditasyonu",
-            text: "Tekrar eden seslerle zihni susturun.\n\n1️⃣ 'Om' veya 'So-Ham' gibi bir mantra seçin.\n2️⃣ Rahat bir pozisyonda oturun.\n3️⃣ Her nefeste mantrayı içinizden tekrar edin.\n4️⃣ Nefes alırken 'So', verirken 'Ham' deyin.\n5️⃣ 10 dakika boyunca bu ritmi sürdürün.",
+            text: "1. 'Om' veya 'So-Ham' gibi bir mantra seçin.\n2. Rahat bir pozisyonda oturun.\n3. Her nefeste mantrayı içinizden tekrar edin.\n4. Nefes alırken 'So', verirken 'Ham' deyin.\n5. 10 dakika boyunca bu ritmi sürdürün.",
             emoji: "🔊",
-            image: "https://source.unsplash.com/600x338/?mantra,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?mantra,meditation",
+                "https://source.unsplash.com/600x338/?sound,healing",
+                "https://source.unsplash.com/600x338/?om,chant"
+            ]
         },
         vipassana: {
             title: "🕯️ Vipassana (İçgörü)",
-            text: "Gerçekliği olduğu gibi gözlemleyin.\n\n1️⃣ Nefes alıp verişinizi doğal haliyle izleyin.\n2️⃣ Vücudunuzdaki her türlü duyumu fark edin (ağrı, kaşıntı, sıcaklık).\n3️⃣ Hiçbirine müdahale etmeyin, sadece gözlemleyin.\n4️⃣ Zihniniz dağıldığında, tekrar nefese dönün.\n5️⃣ 15 dakika boyunca bu farkındalıkta kalın.",
+            text: "1. Nefes alıp verişinizi doğal haliyle izleyin.\n2. Vücudunuzdaki her türlü duyumu fark edin (ağrı, kaşıntı, sıcaklık).\n3. Hiçbirine müdahale etmeyin, sadece gözlemleyin.\n4. Zihniniz dağıldığında, tekrar nefese dönün.\n5. 15 dakika boyunca bu farkındalıkta kalın.",
             emoji: "🕯️",
-            image: "https://source.unsplash.com/600x338/?vipassana,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?vipassana,meditation",
+                "https://source.unsplash.com/600x338/?insight,meditation",
+                "https://source.unsplash.com/600x338/?observe,mind"
+            ]
         },
         metta: {
             title: "💖 Metta (Sevgi Dolu İyilik)",
-            text: "Kendinize ve başkalarına sevgi gönderin.\n\n1️⃣ 'Kendime sevgi ve şefkat diliyorum' deyin.\n2️⃣ Sonra sevdiğiniz birini düşünün ve ona iyilik dileyin.\n3️⃣ Ardından nötr birine (tanımadığınız biri).\n4️⃣ Son olarak tüm canlılara sevgi gönderin.\n5️⃣ Her aşamada 1-2 dakika kalın.",
+            text: "1. 'Kendime sevgi ve şefkat diliyorum' deyin.\n2. Sonra sevdiğiniz birini düşünün ve ona iyilik dileyin.\n3. Ardından nötr birine (tanımadığınız biri).\n4. Son olarak tüm canlılara sevgi gönderin.\n5. Her aşamada 1-2 dakika kalın.",
             emoji: "💖",
-            image: "https://source.unsplash.com/600x338/?loving,kindness,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?loving,kindness",
+                "https://source.unsplash.com/600x338/?compassion,meditation",
+                "https://source.unsplash.com/600x338/?heart,meditation"
+            ]
         },
         transandantal: {
             title: "🌀 Transandantal Meditasyon",
-            text: "Zihnin ötesine geçin.\n\n1️⃣ Kişisel bir mantra seçin (özel bir kelime).\n2️⃣ Gözlerinizi kapatın ve mantrayı sessizce tekrarlayın.\n3️⃣ Düşünceler geldiğinde, onları geçip giden bulutlar gibi izleyin.\n4️⃣ 20 dakika boyunca bu pratiği sürdürün.\n5️⃣ Yavaşça odanıza dönün ve gözlerinizi açın.",
+            text: "1. Kişisel bir mantra seçin (özel bir kelime).\n2. Gözlerinizi kapatın ve mantrayı sessizce tekrarlayın.\n3. Düşünceler geldiğinde, onları geçip giden bulutlar gibi izleyin.\n4. 20 dakika boyunca bu pratiği sürdürün.\n5. Yavaşça odanıza dönün ve gözlerinizi açın.",
             emoji: "🌀",
-            image: "https://source.unsplash.com/600x338/?transcendental,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?transcendental,meditation",
+                "https://source.unsplash.com/600x338/?deep,meditation",
+                "https://source.unsplash.com/600x338/?peace,mind"
+            ]
         },
         farkindalik: {
             title: "🌿 Farkındalık Meditasyonu",
-            text: "Şimdiki anda kalın.\n\n1️⃣ Oturun ve 5 duyunuzu kullanın (görmek, duymak, koklamak, tatmak, dokunmak).\n2️⃣ Nefes alırken vücudunuzdaki hareketi fark edin.\n3️⃣ Aklınıza gelen her düşünceyi etiketleyin (düşünce, duygu, his).\n4️⃣ Yargılamadan sadece gözlemleyin.\n5️⃣ 10 dakika boyunca bu anda kalın.",
+            text: "1. Oturun ve 5 duyunuzu kullanın (görmek, duymak, koklamak, tatmak, dokunmak).\n2. Nefes alırken vücudunuzdaki hareketi fark edin.\n3. Aklınıza gelen her düşünceyi etiketleyin (düşünce, duygu, his).\n4. Yargılamadan sadece gözlemleyin.\n5. 10 dakika boyunca bu anda kalın.",
             emoji: "🌿",
-            image: "https://source.unsplash.com/600x338/?mindfulness,meditation"
+            images: [
+                "https://source.unsplash.com/600x338/?mindfulness,meditation",
+                "https://source.unsplash.com/600x338/?awareness",
+                "https://source.unsplash.com/600x338/?present,moment"
+            ]
         }
     };
 
-    // ---------- DOM ELEMANLARI ----------
+    // ---------- DOM ----------
     const displayMedia = document.getElementById('displayMedia');
     const displayEmoji = document.getElementById('displayEmoji');
     const displayTitle = document.getElementById('displayTitle');
@@ -414,46 +464,57 @@
     const contentBox = document.getElementById('contentBox');
     const muteBtn = document.getElementById('muteBtn');
 
-    let currentAudio = null;       // konuşma sentezi
-    let bgMusic = null;            // arka plan müziği
-    let isMuted = false;
+    let currentAudio = null;
+    let bgMusic = null;
+    let isMuted = true;      // başlangıçta kapalı
     let speaking = false;
+    let slideInterval = null;
+    let currentSlide = 0;
 
-    // ---------- ARKA PLAN MÜZİĞİ (opsiyonel) ----------
-    // Buraya kendi müzik dosyanı ekleyebilirsin. Örnek URL (telifsiz):
-    const MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+    // ---------- Sakinleştirici fon müziği (telifsiz) ----------
+    const MUSIC_URL = 'https://cdn.pixabay.com/download/audio/2021/08/04/audio_6e6e3b6c6e.mp3?filename=relaxing-piano-11428.mp3';
 
     function initMusic() {
         if (!bgMusic) {
             bgMusic = new Audio(MUSIC_URL);
             bgMusic.loop = true;
-            bgMusic.volume = 0.3;
+            bgMusic.volume = 0.25;
         }
         if (!isMuted) {
-            bgMusic.play().catch(() => {});
+            bgMusic.play().catch(() => {
+                audioLabel.textContent = '⚠️ Müzik yüklenemedi, kendi müziğinizi ekleyin.';
+            });
             muteBtn.textContent = '🔊 Müzik Açık';
         } else {
-            bgMusic.pause();
-            muteBtn.textContent = '🔇 Müzik Kapa';
+            if (bgMusic) bgMusic.pause();
+            muteBtn.textContent = '🔇 Müzik Kapalı';
         }
     }
 
     muteBtn.addEventListener('click', function() {
         isMuted = !isMuted;
-        if (isMuted) {
-            if (bgMusic) bgMusic.pause();
-            muteBtn.textContent = '🔇 Müzik Kapa';
-        } else {
-            initMusic();
-            muteBtn.textContent = '🔊 Müzik Açık';
-        }
+        initMusic();
     });
 
-    // Başlangıçta müziği başlat (kullanıcı etkileşimi gerektiğinden butona tıklama ile)
+    // İlk tıklamada müziği başlat (kullanıcı etkileşimi şart)
     document.addEventListener('click', function firstClick() {
-        initMusic();
-        document.removeEventListener('click', firstClick);
+        if (isMuted) {
+            // Kullanıcı müziği açmak isterse butona tıklayacak, burada otomatik açmayalım.
+        }
+        // Sadece buton işlevselliği için
     }, { once: true });
+
+    // ---------- SLAYT GÖSTERİSİ ----------
+    function startSlideShow(images) {
+        if (slideInterval) clearInterval(slideInterval);
+        if (!images || images.length === 0) return;
+        currentSlide = 0;
+        displayMedia.src = images[0];
+        slideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % images.length;
+            displayMedia.src = images[currentSlide];
+        }, 3500); // 3.5 saniyede bir değiş
+    }
 
     // ---------- MEDİTASYON AÇ ----------
     function openMeditation(type) {
@@ -466,17 +527,15 @@
         const data = meditations[type];
         if (!data) return;
 
-        // Görsel
-        displayMedia.src = data.image || 'https://source.unsplash.com/600x338/?meditation';
-        displayMedia.alt = data.title;
-        displayMedia.classList.add('wave-active');
+        // Slaytı başlat
+        startSlideShow(data.images);
 
         // Emoji, başlık, metin
         displayEmoji.textContent = data.emoji || '🧘';
         displayTitle.textContent = data.title;
         displayText.textContent = data.text;
 
-        // Arka plan rengini değiştir (keyif)
+        // Arka plan rengi
         const hue = (type.length * 28) % 360;
         contentBox.style.background = `radial-gradient(circle at 30% 30%, rgba(${hue},80,120,0.15), #121225)`;
 
@@ -538,6 +597,11 @@
         alert('❓ Sorunuz iletildi. En kısa sürede dönüş yapılacak.');
         this.reset();
     });
+
+    // ---------- BAŞLANGIÇ ----------
+    // Müzik kapalı başlar, kullanıcı butona tıklayarak açabilir.
+    // Varsayılan görsel
+    displayMedia.src = 'https://source.unsplash.com/600x338/?meditation,yoga';
 </script>
 </body>
 </html>
