@@ -1,4 +1,268 @@
 <a href="index.html">Ana Sayfaya Dön</a>
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga & Meditasyon</title>
+<style>
+ :root {
+ --bg-color: #121212;
+ --card-bg: #1e1e1e;
+ --text-color: #e0e0e0;
+ --accent-color: #bb86fc;
+ --secondary-color: #03dac6;
+ --border-color: #333;
+ }
+ body {
+ background-color: var(--bg-color);
+ color: var(--text-color);
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ margin: 0;
+ padding: 15px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ box-sizing: border-box;
+ }
+ .container {
+ background-color: var(--card-bg);
+ width: 100%;
+ max-width: 650px;
+ padding: 25px;
+ border-radius: 15px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+ text-align: center;
+ }
+ h1 { color: var(--accent-color); margin-bottom: 10px; font-size: 1.8rem; }
+ p { font-size: 0.95rem; color: #b0b0b0; }
+ .menu-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+ gap: 8px;
+ margin-top: 15px;
+ }
+ .btn {
+ background-color: var(--accent-color);
+ color: #000;
+ padding: 10px 15px;
+ border: none;
+ border-radius: 6px;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 0.85rem;
+ transition: all 0.3s ease;
+ }
+ .btn:hover {
+ background-color: var(--secondary-color);
+ transform: translateY(-2px);
+ }
+ .content-box {
+ margin-top: 25px;
+ padding: 20px;
+ background-color: #252525;
+ border-radius: 10px;
+ border: 1px solid var(--border-color);
+ }
+ .media-display {
+ width: 100%;
+ max-height: 220px;
+ object-fit: cover;
+ border-radius: 8px;
+ margin-bottom: 15px;
+ }
+ .pulse-animation {
+ animation: pulseGlow 2.5s infinite alternate;
+ }
+ @keyframes pulseGlow {
+ 0% { transform: scale(1); filter: brightness(1); }
+ 100% { transform: scale(1.02); filter: brightness(1.15); box-shadow: 0 0 15px rgba(187, 134, 252, 0.4); }
+ }
+ .form-box {
+ margin-top: 25px;
+ padding: 20px;
+ background-color: #1a1a1a;
+ border-radius: 10px;
+ border: 1px solid var(--border-color);
+ text-align: left;
+ }
+ .form-box h3 { color: var(--secondary-color); margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
+ label { font-size: 0.8rem; color: #999; display: block; margin-bottom: 3px; }
+ input, textarea {
+ width: 100%;
+ padding: 9px;
+ margin-bottom: 12px;
+ border-radius: 5px;
+ border: 1px solid #444;
+ background-color: #2b2b2b;
+ color: #fff;
+ box-sizing: border-box;
+ font-size: 0.9rem;
+ }
+ input:focus, textarea:focus {
+ border-color: var(--accent-color);
+ outline: none;
+ }
+</style>
+</head>
+<body>
+
+<div class="container">
+ <h1>Yoga ve Meditasyon</h1>
+ <p>Sesli rehber, yazılı metin ve görsellerle zenginleştirilmiş pratikler.</p>
+
+ <div class="menu-grid">
+ <button class="btn" onclick="openMeditation('sabah')">Sabah</button>
+ <button class="btn" onclick="openMeditation('gece')">Gece</button>
+ <button class="btn" onclick="openMeditation('yoga')">Yoga Nidra</button>
+ <button class="btn" onclick="openMeditation('nefes')">4-7-8 Nefes</button>
+ <button class="btn" onclick="openMeditation('chakra')">Çakra</button>
+ <button class="btn" onclick="openMeditation('odak')">Derin Odak</button>
+ </div>
+
+ <div class="content-box">
+ <div id="mediaContainer">
+ <img id="displayMedia" src="placeholder.jpg" alt="Meditasyon Görseli" class="media-display pulse-animation" style="display:none;">
+ </div>
+ <div id="displayEmoji" style="font-size:2.8rem; margin-bottom: 8px;">🎧</div>
+ <div id="displayText" style="font-size: 0.95rem; line-height: 1.5;">Bir menü butonuna tıklayarak rehberi başlatın.</div>
+ </div>
+
+ <div class="form-box">
+ <h3>Yorum Yap</h3>
+ <form id="commentForm">
+ <label>Adınız *</label>
+ <input type="text" id="comName" required>
+ <label>Soyadınız (Gizli Tutulacak) *</label>
+ <input type="text" id="comSurname" required>
+ <label>E-posta Adresiniz (Gizli Tutulacak) *</label>
+ <input type="email" id="comEmail" required>
+ <label>Yorumunuz *</label>
+ <textarea id="comText" rows="3" required></textarea>
+ <button class="btn" type="submit" style="width:100%;">Yorumu Gönder</button>
+ </form>
+ </div>
+
+ <div class="form-box">
+ <h3>Soru Sor</h3>
+ <form id="questionForm">
+ <label>Adınız *</label>
+ <input type="text" id="qName" required>
+ <label>Soyadınız *</label>
+ <input type="text" id="qSurname" required>
+ <label>Cep Telefonunuz *</label>
+ <input type="tel" id="qPhone" required>
+ <label>E-posta Adresiniz *</label>
+ <input type="email" id="qEmail" required>
+ <label>Şehir *</label>
+ <input type="text" id="qCity" required>
+ <label>Yaşınız *</label>
+ <input type="number" id="qAge" required>
+ <label>Sorunuz *</label>
+ <textarea id="qText" rows="3" required></textarea>
+ 
+ <label style="color:var(--accent-color);">Not: Sorularınızın size ulaşması için lütfen e-posta adresinizi doğru giriniz.</label>
+ 
+ <button class="btn" type="submit" style="width:100%;">Soruyu Gönder</button>
+ </form>
+ </div>
+
+</div>
+
+<script>
+ const meditations = {
+ sabah: {
+ text: "Sabah Meditasyonu: Güne başlarken 5 dakika boyunca derin nefes alın ve güne pozitif bir niyetle başlayın.",
+ emoji: "🌅",
+ media: "sabah.jpg",
+ audio: "sabah.mp3"
+ },
+ gece: {
+ text: "Gece Meditasyonu: Günün stresini geride bırakın. Bedeninizi gevşeterek huzurlu bir uykuya geçiş yapın.",
+ emoji: "🌙",
+ media: "gece.jpg",
+ audio: "gece.mp3"
+ },
+ yoga: {
+ text: "Yoga Nidra Rehberi: Sırt üstü rahat bir pozisyonda uzanın. Dikkatinizi bedeninizin farklı noktalarına odaklayarak tam bir zihinsel dinlenme sağlayın.",
+ emoji: "🧘‍♀️",
+ media: "yoga.jpg",
+ audio: "yoga.mp3"
+ },
+ nefes: {
+ text: "4-7-8 Nefes Tekniği: 4 saniye nefes alın, 7 saniye tutun ve 8 saniyede yavaşça verin. Sinir sisteminizi anında sakinleştirir.",
+ emoji: "🌬️",
+ media: "nefes.jpg",
+ audio: "nefes.mp3"
+ },
+ chakra: {
+ text: "Çakra Dengeleme: Vücudunuzdaki ana enerji akışını dengelemek ve bloke olmuş enerjileri serbest bırakmak için görselleştirme çalışması.",
+ emoji: "🌈",
+ media: "chakra.jpg",
+ audio: "chakra.mp3"
+ },
+ odak: {
+ text: "Derin Odak Pratiği: Dikkatinizi tek bir noktada toparlayarak zihinsel dağınıklığı ortadan kaldırın ve berraklık kazanın.",
+ emoji: "🎯",
+ media: "odak.jpg",
+ audio: "odak.mp3"
+ }
+ };
+
+ let currentAudio = null;
+
+ function openMeditation(type) {
+ if (currentAudio) {
+ currentAudio.pause();
+ currentAudio.currentTime = 0;
+ }
+
+ const data = meditations[type];
+ const mediaElement = document.getElementById('displayMedia');
+ document.getElementById('displayEmoji').innerHTML = data.emoji;
+ document.getElementById('displayText').innerHTML = data.text;
+ 
+ if (data.media) {
+ mediaElement.src = data.media;
+ mediaElement.style.display = 'block';
+ } else {
+ mediaElement.style.display = 'none';
+ }
+ 
+ if (data.audio) {
+ currentAudio = new Audio(data.audio);
+ currentAudio.play().catch(e => console.log("Ses dosyası çalınamadı."));
+ }
+ }
+
+ document.getElementById('commentForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+ alert("Yorumunuz başarıyla gönderildi!");
+ this.reset();
+ });
+
+ document.getElementById('questionForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+ alert("Sorunuz başarıyla iletildi!");
+ this.reset();
+ });
+</script>
+
+</body>
+</html>
+
+```
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
